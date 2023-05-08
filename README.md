@@ -1,5 +1,9 @@
 # Vue 3 + Typescript + Vite + Element Plus Starter
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/480173/234813158-d131b02f-1aca-4c78-be11-6c5dfca4d41c.png" alt="logo" width="300" height="300" />
+</p>
+
 This template should help get you started developing with Vue 3 and Typescript in Vite.
 The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
