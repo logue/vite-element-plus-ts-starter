@@ -51,6 +51,10 @@ When adding or deleting files, an error may occur and even if the error is corre
 
 Due to [yarn issues](https://github.com/yarnpkg/berry/issues/4448), it may not work properly if the path contains non-ASCII characters (such as 日本語 or 한국어, 中文 etc.).
 
+### test outputs error
+
+Since unplugin is used, an error will always occur at the first execution. Press `a` on the console and try again.
+
 ## Checklist
 
 When you use this template, try follow the checklist to update your info properly

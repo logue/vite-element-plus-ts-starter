@@ -1,13 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig.json",
-  "extends": ["@vue/tsconfig/tsconfig.json", "@vue/tsconfig/tsconfig.dom.json"],
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": ["env.d.ts", "components.d.ts", "src/**/*", "src/**/*.vue"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
+    "moduleResolution": "node",
     "composite": true,
     "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"] },
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "types": ["vue/ref-macros", "element-plus/global"]
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "vueCompilerOptions": {
+    "target": 3,
+    "jsxTemplates": true
   }
 }

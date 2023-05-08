@@ -1,7 +1,6 @@
 env:
   browser: true
   es2022: true
-  node: true
 extends:
   - plugin:vue/vue3-recommended
   - standard-with-typescript

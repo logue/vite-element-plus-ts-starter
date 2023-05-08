@@ -32,7 +32,7 @@ const toast = () => {
     <el-button size="large" @click="toast">El Message</el-button>
   </div>
 
-  <div class="my-2 text-center flex flex-wrap justify-center items-center">
+  <div class="my-2 flex flex-wrap items-center justify-center text-center">
     <el-button @click="count++">count is: {{ count }}</el-button>
     <el-button type="primary" @click="count++">count is: {{ count }}</el-button>
     <el-button type="success" @click="count++">count is: {{ count }}</el-button>
@@ -49,13 +49,13 @@ const toast = () => {
   </div>
 
   <div class="my-2">
-    <el-input class="m-2" v-model="input" style="width: 200px" />
+    <el-input v-model="input" class="m-2" style="width: 200px" />
     <el-date-picker
-      class="m-2"
       v-model="curDate"
-      type="date"
+      class="m-2"
       placeholder="Pick a day"
-    ></el-date-picker>
+      type="date"
+    />
   </div>
 
   <p>For example, we can custom primary color to 'green'.</p>
@@ -72,20 +72,14 @@ const toast = () => {
   </p>
 
   <p>
-    Full Example:
+    Template using
     <a
-      href="https://github.com/element-plus/element-plus-vite-starter"
+      href="https://github.com/logue/vite-element-plus-ts-starter"
       target="_blank"
     >
-      element-plus-vite-starter
+      vite-element-plus-ts-starter
     </a>
-    | On demand Example:
-    <a
-      href="https://github.com/element-plus/unplugin-element-plus"
-      target="_blank"
-    >
-      unplugin-element-plus/examples/vite
-    </a>
+    .
   </p>
 </template>
 

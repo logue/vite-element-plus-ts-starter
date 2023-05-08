@@ -35,8 +35,12 @@ export default defineConfig(({ command, mode }): UserConfig => {
         typescript: true,
         vueTsc: true,
         eslint: {
-          lintCommand:
-            'eslint . --fix --cache --cache-location ./node_modules/.vite/vite-plugin-eslint', // for example, lint .ts & .tsx
+          // for example, lint .ts and .tsx
+          lintCommand: 'eslint "./src/**/*.{ts,tsx,vue}"',
+        },
+        stylelint: {
+          // for example, lint .css and .vue
+          lintCommand: 'stylelint ./src/**/*.{css,scss,vue}',
         },
       }),
       Components({
