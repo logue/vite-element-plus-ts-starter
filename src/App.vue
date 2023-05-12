@@ -1,26 +1,34 @@
 <template>
   <el-config-provider namespace="ep">
-    <base-header />
-    <div style="display: flex">
-      <base-side />
+    <el-header class="header fixed top-0 z-12 w-screen px-0">
+      <base-header />
+    </el-header>
+    <div class="h-screen flex container">
+      <el-aside width="auto" class="sticky">
+        <base-side />
+      </el-aside>
       <div>
-        <img
-          alt="Vue logo"
-          class="element-plus-logo"
-          src="./assets/element-plus.svg"
-        />
-        <hello-world msg="Hello Vue 3.1 + Element Plus + Vite" />
+        <el-scrollbar>
+          <el-main>
+            <transition name="el-fade-in-linear">
+              <router-view />
+            </transition>
+          </el-main>
+        </el-scrollbar>
       </div>
     </div>
   </el-config-provider>
 </template>
 
-<style>
-#app {
-  text-align: center;
-  color: var(--ep-text-color-primary);
+<style scoped>
+.container {
+  margin-top: 60px;
+  height: calc(100vh - 60px);
 }
-.element-plus-logo {
-  width: 50%;
+
+.header {
+  background-image: radial-gradient(transparent 1px, var(--ep-bg-color) 1px);
+  background-size: 4px 4px;
+  backdrop-filter: saturate(50%) blur(4px);
 }
 </style>

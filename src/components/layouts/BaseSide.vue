@@ -2,6 +2,7 @@
   <el-menu
     default-active="2"
     class="el-menu-vertical-demo"
+    style="height: 100%"
     :collapse="isCollapse"
     @open="handleOpen"
     @close="handleClose"

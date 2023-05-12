@@ -10,6 +10,7 @@ extends:
   - plugin:yaml/recommended
   - '@unocss'
   - '@vue/eslint-config-prettier'
+overrides: []
 parser: vue-eslint-parser
 parserOptions:
   ecmaVersion: latest
@@ -44,15 +45,15 @@ rules:
   '@typescript-eslint/prefer-nullish-coalescing': off
   '@typescript-eslint/strict-boolean-expressions': off
   '@typescript-eslint/triple-slash-reference': off # Vite env.d.ts fix
-  import/default: off
-  import/no-default-export: off # Fix for Element Plus
-  import/no-named-as-default: off # Fix for Element Plus
+  import/default: off # Fix for Vue setup sytle
+  import/namespace: off # Fix for Element Plus
+  import/no-default-export: off # Fix for Vue setup style
   import/no-named-as-default-member: off # Fix for Element Plus
+  import/no-named-as-default: off # Fix for Element Plus
   import/no-unresolved:
     - error
     - ignore:
-        - '^virtual:' # Fix for Vite
-  import/namespace: off
+        - '^virtual:' # Fix for unocss and vite.
   tsdoc/syntax: warn
   vue/html-self-closing:
     - error
@@ -67,7 +68,7 @@ settings:
     vue-eslint-parser:
       - .vue
   import/resolver:
-    typescript: {}
+    typescript: true
     alias:
       map:
         - ['@', './src']

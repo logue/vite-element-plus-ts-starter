@@ -6,6 +6,7 @@ import { defineConfig, type UserConfig } from 'vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import { visualizer } from 'rollup-plugin-visualizer';
 import Components from 'unplugin-vue-components/vite';
+// @ts-expect-error
 import ElementPlus from 'unplugin-element-plus/vite';
 import UnoCSS from 'unocss/vite';
 import vue from '@vitejs/plugin-vue';

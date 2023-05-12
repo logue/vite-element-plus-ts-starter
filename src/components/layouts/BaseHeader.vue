@@ -3,22 +3,25 @@ import { toggleDark } from '@/helpers/dark';
 </script>
 
 <template>
-  <el-menu class="el-menu-demo" mode="horizontal">
-    <el-menu-item index="1">Element Plus</el-menu-item>
-    <el-sub-menu index="2">
+  <el-menu class="el-menu-demo" mode="horizontal" router>
+    <el-menu-item index="1" :route="{ name: 'home' }">
+      Element Plus
+    </el-menu-item>
+    <el-menu-item index="2" :route="{ name: 'about' }">About</el-menu-item>
+    <el-sub-menu index="3">
       <template #title>Workspace</template>
-      <el-menu-item index="2-1">item one</el-menu-item>
-      <el-menu-item index="2-2">item two</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item>
-      <el-sub-menu index="2-4">
+      <el-menu-item index="3-1">item one</el-menu-item>
+      <el-menu-item index="3-2">item two</el-menu-item>
+      <el-menu-item index="3-3">item three</el-menu-item>
+      <el-sub-menu index="3-4">
         <template #title>item four</template>
-        <el-menu-item index="2-4-1">item one</el-menu-item>
-        <el-menu-item index="2-4-2">item two</el-menu-item>
-        <el-menu-item index="2-4-3">item three</el-menu-item>
+        <el-menu-item index="3-4-1">item one</el-menu-item>
+        <el-menu-item index="3-4-2">item two</el-menu-item>
+        <el-menu-item index="3-4-3">item three</el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
-    <el-menu-item index="3" disabled>Info</el-menu-item>
-    <el-menu-item index="4">Orders</el-menu-item>
+    <el-menu-item index="4" disabled>Info</el-menu-item>
+    <el-menu-item index="5">Orders</el-menu-item>
     <el-menu-item h="full" @click="toggleDark()">
       <button
         class="w-full cursor-pointer border-none bg-transparent"

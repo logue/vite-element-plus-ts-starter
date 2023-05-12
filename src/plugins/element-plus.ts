@@ -7,8 +7,9 @@ import 'element-plus/theme-chalk/src/message.scss';
 
 // UnoCSS
 // https://unocss.dev/
+import '@unocss/reset/normalize.css';
 import 'virtual:uno.css';
-// import 'virtual:unocss-devtools';
+import 'virtual:unocss-devtools';
 
 // Configure
 import '@/styles/index.scss';
