@@ -1,17 +1,18 @@
-import { fileURLToPath, URL } from 'node:url';
 import { writeFileSync } from 'node:fs';
+import { fileURLToPath, URL } from 'node:url';
 
-import { checker } from 'vite-plugin-checker';
+import vue from '@vitejs/plugin-vue';
 import { defineConfig, type UserConfig } from 'vite';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+
 import { visualizer } from 'rollup-plugin-visualizer';
-import Components from 'unplugin-vue-components/vite';
 // @ts-expect-error
 import ElementPlus from 'unplugin-element-plus/vite';
-import UnoCSS from 'unocss/vite';
-import vue from '@vitejs/plugin-vue';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import Components from 'unplugin-vue-components/vite';
+import { checker } from 'vite-plugin-checker';
 
-// @ts-nocheck
+import UnoCSS from 'unocss/vite';
+
 import pkg from './package.json';
 
 /**

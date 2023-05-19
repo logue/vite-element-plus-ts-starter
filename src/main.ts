@@ -1,17 +1,13 @@
 /**
  * Vue3 Main script
  */
-
-// Load vue core
 import { createApp } from 'vue';
-import router from '@/router';
-import stores from '@/stores';
 
-// Load Element Plus
 import ElementPlus from '@/plugins/element-plus';
 
-// Load Layout vue.
 import App from '@/App.vue';
+import router from '@/router';
+import stores from '@/stores';
 
 /** Register Vue */
 const vue = createApp(App);
@@ -25,4 +21,6 @@ router
   .then(() => {
     vue.mount('#app');
   })
-  .catch(e => console.error(e));
+  .catch(e => {
+    console.error(e);
+  });

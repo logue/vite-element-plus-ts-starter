@@ -1,5 +1,5 @@
-import { ref, computed, type ComputedRef, type Ref } from 'vue';
 import { defineStore } from 'pinia';
+import { ref, computed, type ComputedRef, type Ref } from 'vue';
 
 /** Counter Store */
 export default defineStore('counter', () => {
