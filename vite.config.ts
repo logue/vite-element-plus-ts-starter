@@ -2,7 +2,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath, URL } from 'node:url';
 
 import vue from '@vitejs/plugin-vue';
-import { defineConfig, type UserConfig } from 'vite';
+import { defineConfig, type Plugin, type UserConfig } from 'vite';
 
 import { visualizer } from 'rollup-plugin-visualizer';
 // @ts-expect-error
@@ -76,6 +76,8 @@ export default defineConfig(({ command, mode }): UserConfig => {
       // UnoCSS
       // See uno.config.css
       UnoCSS(),
+      // Fix Invalid event arguments.
+      patchRawWindow(),
     ],
     // Resolver
     resolve: {
@@ -146,3 +148,34 @@ export default meta;
 
   return config;
 });
+
+/**
+ * Fix for Invalid event arguments: event validation failed for event "click".
+ * @see {@link https://github.com/micro-zoe/micro-app/issues/756}
+ */
+function patchRawWindow(): Plugin {
+  return {
+    name: 'patchRawWindow',
+    transform(code, id) {
+      if (id.includes('/.vite/deps/chunk')) {
+        let isFind = false;
+        const _code = code.replace(
+          /instanceof (([A-Z]+[a-zA-Z]+)?Event)/g,
+          (_, $1: string) => {
+            isFind = true;
+            return `instanceof (patchRawWindow('${$1}') || ${$1})`;
+          }
+        );
+        const fn = `function patchRawWindow(key) {
+          if (window.__MICRO_APP_ENVIRONMENT__ && window[key]) {
+            return window.rawWindow[key]
+          } else {
+            return false
+          }
+        }\n`;
+        return isFind ? fn + _code : _code;
+      }
+      return code;
+    },
+  };
+}

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
+
 import { ElMessage } from 'element-plus';
 
 defineProps({
@@ -10,7 +11,9 @@ defineProps({
 });
 
 const count: Ref<number> = ref(0);
+
 const input: Ref<string> = ref('element-plus');
+
 const curDate: Ref<string> = ref('');
 
 const toast = () => {
@@ -93,12 +96,12 @@ const toast = () => {
   </div>
 </template>
 
-<style>
+<style scoped lang="scss">
 .ep-button {
   margin: 4px;
-}
-.ep-button + .ep-button {
-  margin: 4px;
-  margin-left: 0;
+  + .ep-button {
+    margin: 4px;
+    margin-left: 0;
+  }
 }
 </style>
