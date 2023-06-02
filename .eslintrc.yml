@@ -34,7 +34,7 @@ rules:
   no-unused-vars: warn
   '@typescript-eslint/ban-ts-comment': off # Enable @ts-ignore etc.
   '@typescript-eslint/consistent-type-imports': # Enable import sort order, see bellow.
-    - error
+    - off
     - prefer: type-imports
   '@typescript-eslint/explicit-function-return-type': off # Fix for pinia
   '@typescript-eslint/prefer-nullish-coalescing': off # Fix for unocss
@@ -53,12 +53,12 @@ rules:
     - ignore:
         - '^virtual:' # Fix for unocss and vite.
   import/order: # Sort Import Order. see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#importorder-enforce-a-convention-in-module-import-order
-    - error
+    - warn
     - groups:
         ['builtin', 'external', 'parent', 'sibling', 'index', 'object', 'type']
       pathGroups:
         # Vue Core
-        - pattern: '{vue,vue-router,pinia,vite,vitest,vitest/**,@vitejs/**,@vue/**}'
+        - pattern: '{vue,vue-router,pinia,@/store,vue-i18n,vite,vitest,vitest/**,@vitejs/**,@vue/**}'
           group: external
           position: before
         # UI Library
@@ -66,7 +66,7 @@ rules:
           group: parent
           position: before
         # Internal Codes
-        - pattern: '{@/plugins/**,@/stores/**,@/router.ts,@/helpers/**,@/interfaces/**,@/types/**,@/components/**,@/views/**}'
+        - pattern: '{@/**}'
           group: internal
           position: before
       pathGroupsExcludedImportTypes:

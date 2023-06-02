@@ -1,3 +1,24 @@
+<script lang="ts" setup>
+import { ref, type Ref } from 'vue';
+
+import {
+  Location,
+  Document,
+  Menu as IconMenu,
+  Setting,
+} from '@element-plus/icons-vue';
+
+const isCollapsed: Ref<boolean> = ref(true);
+
+const onOpen = (key: string, keyPath: string[]): void => {
+  console.log(key, keyPath);
+};
+
+const onClose = (key: string, keyPath: string[]): void => {
+  console.log(key, keyPath);
+};
+</script>
+
 <template>
   <el-menu
     :collapse="isCollapsed"
@@ -39,24 +60,3 @@
     </el-menu-item>
   </el-menu>
 </template>
-
-<script lang="ts" setup>
-import { ref, type Ref } from 'vue';
-
-import {
-  Location,
-  Document,
-  Menu as IconMenu,
-  Setting,
-} from '@element-plus/icons-vue';
-
-const isCollapsed: Ref<boolean> = ref(true);
-
-const onOpen = (key: string, keyPath: string[]): void => {
-  console.log(key, keyPath);
-};
-
-const onClose = (key: string, keyPath: string[]): void => {
-  console.log(key, keyPath);
-};
-</script>

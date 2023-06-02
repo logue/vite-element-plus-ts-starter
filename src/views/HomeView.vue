@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue';
-
 import logo from '@/assets/element-plus.svg';
+import HelloWorld from '@/components/HelloWorld.vue';
 </script>
 
 <template>

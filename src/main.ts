@@ -3,9 +3,8 @@
  */
 import { createApp } from 'vue';
 
-import ElementPlus from '@/plugins/element-plus';
-
 import App from '@/App.vue';
+import ElementPlus from '@/plugins/element-plus';
 import router from '@/router';
 import stores from '@/stores';
 
