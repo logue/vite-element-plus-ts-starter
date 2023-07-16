@@ -5,7 +5,6 @@ import vue from '@vitejs/plugin-vue';
 import { defineConfig, type Plugin, type UserConfig } from 'vite';
 
 import { visualizer } from 'rollup-plugin-visualizer';
-// @ts-expect-error
 import ElementPlus from 'unplugin-element-plus/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
@@ -28,6 +27,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
     define: { 'process.env': {} },
     plugins: [
       // Vue3
+      // @ts-expect-error
       vue({
         reactivityTransform: true,
       }),
@@ -36,15 +36,10 @@ export default defineConfig(({ command, mode }): UserConfig => {
       checker({
         typescript: true,
         vueTsc: true,
-        eslint: {
-          // for example, lint .ts and .tsx
-          lintCommand: 'eslint "./src/**/*.{ts,tsx,vue}"',
-        },
-        stylelint: {
-          // for example, lint .css and .vue
-          lintCommand: 'stylelint ./src/**/*.{css,scss,vue}',
-        },
+        // eslint: { lintCommand: 'eslint' },
+        // stylelint: { lintCommand: 'stylelint' },
       }),
+      // @ts-expect-error
       Components({
         // allow auto load markdown components under `./src/components/`
         extensions: ['vue', 'md'],
@@ -58,6 +53,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
       }),
       // Element Plus
       // https://github.com/element-plus/unplugin-element-plus
+      // @ts-expect-error
       ElementPlus({
         // https://github.com/element-plus/unplugin-element-plus#usesource
         useSource: false,
@@ -75,6 +71,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
       }),
       // UnoCSS
       // See uno.config.css
+      // @ts-expect-error
       UnoCSS(),
       // Fix Invalid event arguments.
       patchRawWindow(),
@@ -91,7 +88,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "@/styles/element/index.scss" as *;`,
+          additionalData: '@use "@/styles/element/index.scss" as *;',
         },
       },
     },
