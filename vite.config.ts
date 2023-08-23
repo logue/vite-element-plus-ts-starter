@@ -27,7 +27,6 @@ export default defineConfig(({ command, mode }): UserConfig => {
     define: { 'process.env': {} },
     plugins: [
       // Vue3
-      // @ts-expect-error
       vue({
         reactivityTransform: true,
       }),
@@ -53,7 +52,6 @@ export default defineConfig(({ command, mode }): UserConfig => {
       }),
       // Element Plus
       // https://github.com/element-plus/unplugin-element-plus
-      // @ts-expect-error
       ElementPlus({
         // https://github.com/element-plus/unplugin-element-plus#usesource
         useSource: false,
