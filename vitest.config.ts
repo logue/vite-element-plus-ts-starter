@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url';
 import vue from '@vitejs/plugin-vue';
 import { configDefaults, defineConfig, mergeConfig } from 'vitest/config';
 
-// @ts-expect-error
 import viteConfig from './vite.config';
 
 /**
@@ -14,10 +13,7 @@ import viteConfig from './vite.config';
 export default mergeConfig(
   viteConfig,
   defineConfig({
-    plugins: [
-      // @ts-expect-error
-      vue(),
-    ],
+    plugins: [vue()],
     test: {
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'e2e/*'],

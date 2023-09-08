@@ -38,7 +38,6 @@ export default defineConfig(({ command, mode }): UserConfig => {
         // eslint: { lintCommand: 'eslint' },
         // stylelint: { lintCommand: 'stylelint' },
       }),
-      // @ts-expect-error
       Components({
         // allow auto load markdown components under `./src/components/`
         extensions: ['vue', 'md'],
@@ -69,7 +68,6 @@ export default defineConfig(({ command, mode }): UserConfig => {
       }),
       // UnoCSS
       // See uno.config.css
-      // @ts-expect-error
       UnoCSS(),
       // Fix Invalid event arguments.
       patchRawWindow(),
