@@ -27,14 +27,12 @@ export default defineConfig(({ command, mode }): UserConfig => {
     define: { 'process.env': {} },
     plugins: [
       // Vue3
-      vue({
-        reactivityTransform: true,
-      }),
+      vue(),
       // vite-plugin-checker
       // https://github.com/fi3ework/vite-plugin-checker
       checker({
         typescript: true,
-        vueTsc: true,
+        // vueTsc: true,
         // eslint: { lintCommand: 'eslint' },
         // stylelint: { lintCommand: 'stylelint' },
       }),
@@ -104,6 +102,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
           manualChunks: {
             // Split external library from transpiled code.
             vue: ['vue', 'vue-router', 'pinia', 'pinia-plugin-persistedstate'],
+            tinycolor: ['@ctrl/tinycolor/dist/module'],
             'element-plus': ['element-plus'],
           },
           plugins: [
