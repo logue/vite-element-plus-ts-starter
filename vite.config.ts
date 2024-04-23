@@ -5,12 +5,11 @@ import vue from '@vitejs/plugin-vue';
 import { defineConfig, type Plugin, type UserConfig } from 'vite';
 
 import { visualizer } from 'rollup-plugin-visualizer';
+import UnoCSS from 'unocss/vite';
 import ElementPlus from 'unplugin-element-plus/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import { checker } from 'vite-plugin-checker';
-
-import UnoCSS from 'unocss/vite';
 
 import pkg from './package.json';
 

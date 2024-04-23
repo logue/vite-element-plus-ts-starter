@@ -7,7 +7,8 @@
     "cypress.config.*",
     "nightwatch.conf.*",
     "playwright.config.*",
-    "package.json"
+    "package.json",
+    "uno.config.*"
   ],
   "compilerOptions": {
     "composite": true,
