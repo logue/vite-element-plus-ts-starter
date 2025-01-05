@@ -6,7 +6,7 @@ import HelloWorld from '@/components/HelloWorld.vue';
 <template>
   <el-container direction="vertical">
     <img alt="Element Plus logo" class="element-plus-logo mx-a" :src="logo" />
-    <hello-world msg="Hello Vue 3.3 + Element Plus + Vite" />
+    <hello-world msg="Hello Vue 3.5 + Element Plus + Vite" />
   </el-container>
 </template>
 
