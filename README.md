@@ -23,7 +23,7 @@ And use [Volar Takeover Mode](https://vuejs.org/guide/typescript/overview.html#v
 
 ## Commands
 
-It is designed to be close to [create-vue](https://github.com/vuejs/create-vue-templates/tree/main/typescript-router-pinia-vitest) commands.
+It is designed to be close to [create-vue](https://github.com/vuejs/create-vue-templates/tree/main/typescript-router-pinia-vitest-playwright-eslint) commands.
 
 | Command       | Description                                            |
 | ------------- | ------------------------------------------------------ |

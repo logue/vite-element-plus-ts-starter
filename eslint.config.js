@@ -1,55 +1,52 @@
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import configPrettier from 'eslint-config-prettier';
+import configPrettier from '@vue/eslint-config-prettier';
+import {
+  defineConfigWithVueTs,
+  vueTsConfigs,
+} from '@vue/eslint-config-typescript';
 
+import pluginVitest from '@vitest/eslint-plugin';
 import pluginImport from 'eslint-plugin-import';
-import pluginTsdoc from 'eslint-plugin-tsdoc';
+import pluginPlaywright from 'eslint-plugin-playwright';
 import pluginVue from 'eslint-plugin-vue';
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
-import pluginYaml from 'eslint-plugin-yaml';
+
+// To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
+// import { configureVueProject } from '@vue/eslint-config-typescript'
+// configureVueProject({ scriptLangs: ['ts', 'tsx'] })
+// More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
 /**
  * ESLint Config
  */
-// @ts-check
-export default tseslint.config(
+export default defineConfigWithVueTs(
   {
+    name: 'app/files-to-lint',
+    files: ['**/*.{ts,mts,tsx,vue}'],
+  },
+  {
+    name: 'app/files-to-ignore',
     ignores: [
       '.vscode/',
       '.yarn/',
-      'coverage/',
-      'dist/',
+      '**/dist/**',
+      '**/dist-ssr/**',
+      '**/coverage/**',
       'eslint.config.js',
       'pnpm-lock.yaml',
+      'playwright-report',
+      'test-results',
       'public/',
       'src/**/*.generated.*',
     ],
   },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...tseslint.configs.stylistic,
-  ...pluginVue.configs['flat/recommended'],
+  pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],
+  vueTsConfigs.recommended,
   {
-    languageOptions: {
-      parserOptions: {
-        parser: tseslint.parser,
-        project: [
-          'tsconfig.app.json',
-          'tsconfig.node.json',
-          'tsconfig.vitest.json',
-        ],
-        tsconfigRootDir: import.meta.dirname,
-        extraFileExtensions: ['.vue'],
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
-    },
     plugins: {
       import: pluginImport,
-      tsdoc: pluginTsdoc,
-      yaml: pluginYaml,
     },
+
     settings: {
       // This will do the trick
       'import/parsers': {
@@ -60,11 +57,11 @@ export default tseslint.config(
       'import/resolver': {
         typescript: true,
         node: true,
-        alias: {
-          map: [
-            ['@', './src'],
-            ['~', './node_modules'],
-          ],
+        'eslint-import-resolver-custom-alias': {
+          alias: {
+            '@': './src',
+            '~': './node_modules',
+          },
           extensions: ['.js', '.ts', '.jsx', '.tsx', '.vue'],
         },
       },
@@ -98,13 +95,6 @@ export default tseslint.config(
       ],
       // Fix for pinia
       '@typescript-eslint/explicit-function-return-type': 'off',
-      // Allow short land for pretter
-      '@typescript-eslint/no-confusing-void-expression': [
-        'error',
-        {
-          ignoreArrowShorthand: true,
-        },
-      ],
       // Fix for vite import.meta.env
       '@typescript-eslint/strict-boolean-expressions': 'off',
       // Fix for vite env.d.ts.
@@ -149,7 +139,6 @@ export default tseslint.config(
           'newlines-between': 'always',
         },
       ],
-      'tsdoc/syntax': 'warn',
       // A tag with no content should be written like <br />.
       'vue/html-self-closing': [
         'error',
@@ -162,6 +151,14 @@ export default tseslint.config(
       // Mitigate non-multiword component name errors to warnings.
       'vue/multi-word-component-names': 'warn',
     },
+  },
+  {
+    ...pluginVitest.configs.recommended,
+    files: ['src/**/__tests__/*'],
+  },
+  {
+    ...pluginPlaywright.configs['flat/recommended'],
+    files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
   },
   configPrettier
 );
