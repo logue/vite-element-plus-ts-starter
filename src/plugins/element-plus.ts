@@ -7,7 +7,9 @@ import 'element-plus/theme-chalk/src/message.scss';
 // UnoCSS
 // https://unocss.dev/
 import '@unocss/reset/normalize.css';
+// eslint-disable-next-line import/no-unresolved
 import 'virtual:uno.css';
+// eslint-disable-next-line import/no-unresolved
 import 'virtual:unocss-devtools';
 
 // Configure

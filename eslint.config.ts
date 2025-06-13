@@ -4,7 +4,9 @@ import {
   vueTsConfigs,
 } from '@vue/eslint-config-typescript';
 
+import unocss from '@unocss/eslint-config/flat';
 import pluginVitest from '@vitest/eslint-plugin';
+// @ts-ignore
 import pluginImport from 'eslint-plugin-import';
 import pluginPlaywright from 'eslint-plugin-playwright';
 import pluginVue from 'eslint-plugin-vue';
@@ -31,7 +33,6 @@ export default defineConfigWithVueTs(
       '**/dist/**',
       '**/dist-ssr/**',
       '**/coverage/**',
-      'eslint.config.js',
       'pnpm-lock.yaml',
       'playwright-report',
       'test-results',
@@ -42,11 +43,10 @@ export default defineConfigWithVueTs(
   pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],
   vueTsConfigs.recommended,
+  pluginImport.flatConfigs.recommended,
+  pluginImport.flatConfigs.typescript,
+  unocss,
   {
-    plugins: {
-      import: pluginImport,
-    },
-
     settings: {
       // This will do the trick
       'import/parsers': {
@@ -55,6 +55,8 @@ export default defineConfigWithVueTs(
         'vue-eslint-parser': ['.vue'],
       },
       'import/resolver': {
+        // You will also need to install and configure the TypeScript resolver
+        // See also https://github.com/import-js/eslint-import-resolver-typescript#configuration
         typescript: true,
         node: true,
         'eslint-import-resolver-custom-alias': {
@@ -65,13 +67,9 @@ export default defineConfigWithVueTs(
           extensions: ['.js', '.ts', '.jsx', '.tsx', '.vue'],
         },
       },
-      vite: {
-        configPath: './vite.config.ts',
-      },
     },
     rules: {
-      // ...importPlugin.configs["recommended"].rules,
-      'no-unused-vars': 'warn',
+      'no-unused-vars': 'off',
       // const lines: string[] = []; style
       '@typescript-eslint/array-type': [
         'error',
@@ -101,8 +99,11 @@ export default defineConfigWithVueTs(
       '@typescript-eslint/triple-slash-reference': 'off',
       // Fix for Vue setup style
       'import/default': 'off',
-      // Fix for Vue setup style
+      // Fix for vite
+      'import/namespace': 'off',
       'import/no-default-export': 'off',
+      'import/no-named-as-default-member': 'off',
+      'import/no-named-as-default': 'off',
       // Sort Import Order.
       // see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#importorder-enforce-a-convention-in-module-import-order
       'import/order': [

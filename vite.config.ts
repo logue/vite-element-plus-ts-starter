@@ -98,11 +98,38 @@ export default defineConfig(({ command, mode }): UserConfig => {
       // https://vitejs.dev/config/build-options.html#build-rollupoptions
       rollupOptions: {
         output: {
-          manualChunks: {
+          manualChunks: (id: string) => {
             // Split external library from transpiled code.
-            vue: ['vue', 'vue-router', 'pinia', 'pinia-plugin-persistedstate'],
-            tinycolor: ['@ctrl/tinycolor/dist/module'],
-            'element-plus': ['element-plus'],
+            if (
+              id.includes('/node_modules/vuetify') ||
+              id.includes('/node_modules/webfontloader') ||
+              id.includes('/node_modules/@mdi')
+            ) {
+              // Split Vuetify before vue.
+              return 'vuetify';
+            }
+            if (
+              id.includes('/node_modules/@vue/') ||
+              id.includes('/node_modules/vue') ||
+              id.includes('/node_modules/pinia') ||
+              id.includes('/node_modules/destr/') || // pinia-plugin-persistedstate uses destr.
+              id.includes('/node_modules/deep-pick-omit/') // pinia-plugin-persistedstate uses deep-pick-omit.
+            ) {
+              // Combine Vue and Pinia into a single chunk.
+              // This is because Pinia is a state management library for Vue.
+              return 'vue';
+            }
+            // TinyColor
+            if (id.includes('/node_modules/@ctrl/tinycolor/')) {
+              return 'tinycolor';
+            }
+            if (id.includes('/node_modules/element-plus/')) {
+              return 'element-plus';
+            }
+            // Others
+            if (id.includes('/node_modules/')) {
+              return 'vendor';
+            }
           },
           plugins: [
             mode === 'analyze'
