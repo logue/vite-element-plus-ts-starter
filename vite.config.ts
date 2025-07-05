@@ -99,15 +99,6 @@ export default defineConfig(({ command, mode }): UserConfig => {
       rollupOptions: {
         output: {
           manualChunks: (id: string) => {
-            // Split external library from transpiled code.
-            if (
-              id.includes('/node_modules/vuetify') ||
-              id.includes('/node_modules/webfontloader') ||
-              id.includes('/node_modules/@mdi')
-            ) {
-              // Split Vuetify before vue.
-              return 'vuetify';
-            }
             if (
               id.includes('/node_modules/@vue/') ||
               id.includes('/node_modules/vue') ||

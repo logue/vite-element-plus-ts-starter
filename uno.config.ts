@@ -1,8 +1,8 @@
 import {
   defineConfig,
+  presetWind3,
   presetAttributify,
   presetIcons,
-  presetUno,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss';
@@ -14,7 +14,7 @@ import {
  */
 export default defineConfig({
   presets: [
-    presetUno(),
+    presetWind3(),
     presetAttributify(),
     presetIcons({
       scale: 1.2,
